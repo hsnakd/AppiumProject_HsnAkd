@@ -1,0 +1,175 @@
+CLASSNOTES: DAY 1 APPIUM
+
+05/19/2022
+----------
+
+Murodil - instructor at Cydeo
+
+We will learn Appium Mobile Automation together.
+
+Intro to Appium automation tool.
+
+----------
+
+Nowadays, each application that we daily use , we can access it using our computers, mobile phones, tablets, TV etc
+
+So far we concentrated in UI testing and automation of WEB Application in our computers/laptops.
+
+And mostly we will have mobile version of that application, or we just access that application using the browser in our mobile devices.
+
+We need to also test Mobile version of our AUT, or access the app from mobile browser(chrome, safari etc)
+
+We can do mobile testing manually, by opening the iphone and testing the functionality
+or we can AUTOMATE it using tools like APPIUM.
+
+APPIUM is most popular mobile test automation tool.
+
+It is similar/based on Selenium Webdriver, and we can use different programming languages with it. java, c#, python etc
+
+========================
+In your resume:
+
+summary:
+    Experience with using Appium for automation of mobile versions of applications
+
+technical skills :
+    Automation Tools: Selenium WebDriver, Appium
+
+project experiences
+similar to:
+    Experience with using Appium for automation of mobile versions of applications
+=============================
+
+Appium supports automation of IOS, Android, Windows mobile device apps.
+
+Supports app types like:
+    native -> the apps that we have goto app store or play store to download and install. like calculator, clock app
+    Native apps are those written using the iOS, Android, or Windows SDKs.
+
+    Mobile web apps are web apps accessed using a mobile browser (Appium supports Safari on iOS and Chrome or the built-in 'Browser' app on Android).
+
+    Hybrid apps have a wrapper around a "webview" -- a native control that enables interaction with web content.
+ ==============================
+
+APPIUM AUTOMATION CODE IN JAVA ==> EXECUTE ==> SENDS YOUR CODE REQUESTS TO APPIUM SERVER ==> APPIUM SERVERS USES/ASKS UiAutomator2 OR OTHER TO PERFORM THE COMMAND IN THE MOBILE APPLICATION.
+=========
+
+Cloud services for appium code remote execution:
+Or Selenium Grid cloud set up services:
+
+Saucelabs , BrowserStack etc
+
+For remote execution of my automated tests in my automation framework , I use saucelabs cloud service that enables ME easily execute my tests in different browsers and devices.
+
+==========================
+
+DesiredCapabilities desiredCapabilities = new DesiredCapabilities(); 
+We use for passing values in key+value format,
+we can specify device type, OS type, our app etc.
+
+AppiumDriver driver = null;
+DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+desiredCapabilities.setCapability("deviceName", “Pixel 3"); desiredCapabilities.setCapability("platform", "Android"); desiredCapabilities.setCapability("platformVersion", “10.0"); desiredCapabilities.setCapability("app", "https://cybertek-appium.s3.amazonaws.com/etsy.apk"); desiredCapabilities.setCapability("adbExecTimeout", "20000");
+try {
+driver = new AndroidDriver<>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+ } catch (Exception e) { e.printStackTrace();
+}
+
+
+We always need to use DesiredCapabilities with appium automation code.
+=====================
+
+APPIUM FOR ANDROID APP AUTOMATION SET UP:
+
+1) we need mobile device with our application:
+     -> we can connect physical device
+     -> we can use emulator virtual device
+    Android studio -> for android virtual devices
+    XCode -> ios virtual devices
+
+2) Appium server -> we need to connect and run automated steps in mobile devices
+
+3) Appium client -> we added dependency in our project for   <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.6.0</version>
+        </dependency>
+
+4) now we can write our code in intellij class, and run automated test for android application(calculator)
+
+=======================
+
+We need DesiredCapabilities to describe what we need from Appium server.
+We are saying "hey appium server, I want to run my tests for below description:"
+
+ DesiredCapabilities caps = new DesiredCapabilities();
+       // caps.setCapability("deviceName", "Pixel 3");
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+        caps.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk" );
+======================
+Appium server runs in certain machine: we need IP address and port number.
+
+URL url = new URL("http://localhost:4723/wd/hub");
+
+http://localhost:4723/wd/hub => Appium server is running in our local computer at port number 4723. 
+/wd/hub is the path that we add.
+=========================
+
+AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(url, caps);
+
+AppiumDriver driver  is similar to WebDriver driver
+AppiumDriver is an interface and has several implementations:
+
+AndroidDriver -> is a class to controll android application in mobile device
+
+IOSDriver -> is a class to control ios application in mobile device
+
+(url, caps) -> we are specifying the location/url of appium server and capabilities that describe what we need from appium server.
+
+================================
+
+Appium Inspector -> is a tool to help inspect elements/MobileElements in mobile application.
+
+We need to launch it and provide description of our applicaiton similar to DesiredCapabilities.
+
+{
+  "platformName": "Android",
+  "appium:platformVersion": "10",
+  "appium:automationName": "UiAutomator2",
+  "appium:app": "https://cybertek-appium.s3.amazonaws.com/calculator.apk",
+  "deviceName": "Pixel 3"
+}
+
+===================
+
+Locating elements using Appium:
+
+We can use Appium Inspector to inspect and see the properties of elements on mobile application.
+
+//locate AC element on calculator using AccessibilityId("clear")
+MobileElement clearElem = driver.findElement(MobileBy.AccessibilityId("clear"));
+
+System.out.println("Text of elem: " + clearElem.getText());
+Assertions.assertTrue(clearElem.isDisplayed());
+----
+MobileElement is similar to WebElement in selenium WebDriver
+
+There are many locators that we can use for locating MobileElements:
+
+=============================
+
+
+SUMMARY:
+
+- Setting up tools for android automation
+- What is appium , appium server, android student, appium inspector
+- Created a new maven project and added dependencies
+- Automated Calculator native application
+- DesiredCapabilities usage
+- locate elements
+- page object
+- utils etc
+
+ 
