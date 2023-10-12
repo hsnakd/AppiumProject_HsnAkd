@@ -15,9 +15,9 @@ Nowadays, each application that we daily use , we can access it using our comput
 
 So far we concentrated in UI testing and automation of WEB Application in our computers/laptops.
 
-And mostly we will have mobile version of that application, or we just access that application using the browser in our mobile devices.
+And mostly we will have a mobile version of that application, or we just access that application using the browser in our mobile devices.
 
-We need to also test Mobile version of our AUT, or access the app from mobile browser(chrome, safari etc)
+We need to also test a Mobile version of our AUT, or access the app from mobile browser(chrome, safari etc)
 
 We can do mobile testing manually, by opening the iphone and testing the functionality
 or we can AUTOMATE it using tools like APPIUM.
