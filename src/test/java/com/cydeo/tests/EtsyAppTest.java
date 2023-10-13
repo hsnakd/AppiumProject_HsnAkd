@@ -40,7 +40,7 @@ public class EtsyAppTest {
         driver.findElement(By.id("com.etsy.android:id/clg_text_input")).sendKeys("areatha@uspeakw.com");
         Thread.sleep(2000);
 
-        driver.hideKeyboard();  // to hide keyboard of application, it is preventing continue button
+        driver.hideKeyboard();  // to hide the keyboard of application, it is preventing continue button
         Thread.sleep(2000);
 
         driver.findElement(By.id("com.etsy.android:id/sign_in_button_email")).click(); // continue button

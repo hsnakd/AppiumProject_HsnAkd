@@ -19,14 +19,14 @@ Advantages Real mobile devices:
     - we can test low battery
 
 But we cannot have all devices and operating systems with us. 
-So Virtual devices are flexible and we can simulate different mobile devices and operating systems.
+So Virtual devices are flexible, and we can simulate different mobile devices and operating systems.
 
 --------
 
 Lets your company does not want you to use any Virtual devices, how can we test with as many devices as possible:
 
 -> browser stack or saucelabs can be used for real device testing and automation.
--> they are paid services, company needs an account
+-> they are paid services, a company needs an account
 --------
 
 Virtual devices:
@@ -35,7 +35,7 @@ Virtual devices:
 
 Appium Server -> takes our commands and runs the steps in mobile application
 
-Appium Client -> we write our automation code using driver.
+Appium Client -> we write our automation code using a driver.
 
 --------
 Appium Inspector -> helps with inspecting elements, locators in native mobile applications.
@@ -46,10 +46,13 @@ Similar to Selenium IDE, Appium inspector can also record the user actions on th
 
 MobileElement el3 = (MobileElement) driver.findElementById("com.google.android.calculator:id/digit_1");
 el3.click();
+
 MobileElement el4 = (MobileElement) driver.findElementByAccessibilityId("plus");
 el4.click();
+
 MobileElement el5 = (MobileElement) driver.findElementById("com.google.android.calculator:id/digit_5");
 el5.click();
+
 MobileElement el6 = (MobileElement) driver.findElementByAccessibilityId("equals");
 el6.click();
 
@@ -63,7 +66,7 @@ Using Appium to Automate a browser in the mobile device. Like chrome, safari, fi
 
 -> download chromedriver binary and store in our project
 
--> copy absolute path to the chromedriver file and provide it in settings of Appium server
+-> copy absolute path to the chromedriver file and provide it in the settings of Appium server
 
 /Users/cybertekb24/IdeaProjects/AppiumAutomationB25/chromedriver
 
@@ -71,7 +74,7 @@ Using Appium to Automate a browser in the mobile device. Like chrome, safari, fi
 
 -> start appium server
 
--> now we can write code to open chrome browser and steps in our mobile device.
+-> now we can write code to open Chrome browser and step on our mobile device.
 
 -> new class EtsyChromeTest
     URL url = new URL("http://localhost:4723/wd/hub");
