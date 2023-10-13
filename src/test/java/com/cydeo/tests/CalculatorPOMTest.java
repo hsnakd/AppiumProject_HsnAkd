@@ -25,4 +25,42 @@ public class CalculatorPOMTest {
         assertEquals(40, Integer.parseInt(result) );
     }
 
+    @Test
+    public void multiplyTest2() {
+        int num1 = 5;
+        int num2 = 8;
+        calculatorPage.multiply(num1,num2);
+
+        String result = calculatorPage.result.getText();
+        System.out.println("result = " + result);
+
+        assertEquals(num1*num2, Integer.parseInt(result) );
+    }
+
+    @Test
+    public void calculatorTest() {
+        int num1 = 5;
+        char operator = '+';
+        int num2 = 8;
+        int expectedResult = 0;
+
+        calculatorPage.calculator(num1, operator, num2);
+
+        String result = calculatorPage.result.getText();
+        System.out.println("result = " + result);
+
+        if (operator == '*') {
+            expectedResult = num1*num2;
+        } else if (operator == '/') {
+            expectedResult = num1/num2;
+        } else if (operator == '+') {
+            expectedResult = num1+num2;
+        } else if (operator == '-') {
+            expectedResult = num1-num2;
+        }else {
+            System.out.println("Wrong Operator");
+        }
+
+        assertEquals(expectedResult, Integer.parseInt(result) );
+    }
 }

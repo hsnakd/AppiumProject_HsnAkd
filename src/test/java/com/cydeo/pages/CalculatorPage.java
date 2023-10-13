@@ -15,6 +15,15 @@ public class CalculatorPage {
     @AndroidFindBy(accessibility = "multiply")
     public MobileElement multiply;
 
+    @AndroidFindBy(accessibility = "divide")
+    public MobileElement divide;
+
+    @AndroidFindBy(accessibility = "plus")
+    public MobileElement plus;
+
+    @AndroidFindBy(accessibility = "minus")
+    public MobileElement minus;
+
     @AndroidFindBy(accessibility = "equals")
     public MobileElement equals;
 
@@ -23,6 +32,32 @@ public class CalculatorPage {
 
     public void multiply() {
         multiply.click();
+    }
+
+    public void multiply(int num1, int num2) {
+        clickSingleDigit(num1);
+        multiply.click();
+        clickSingleDigit(num2);
+        equals.click();
+    }
+
+    public void calculator(int num1, char operator, int num2) {
+        clickSingleDigit(num1);
+
+        if (operator == '*') {
+            multiply.click();
+        } else if (operator == '/') {
+            divide.click();
+        } else if (operator == '+') {
+            plus.click();
+        } else if (operator == '-') {
+            minus.click();
+        }else {
+            System.out.println("Wrong Operator");
+        }
+
+        clickSingleDigit(num2);
+        equals.click();
     }
 
     public void clickSingleDigit(int digit) {

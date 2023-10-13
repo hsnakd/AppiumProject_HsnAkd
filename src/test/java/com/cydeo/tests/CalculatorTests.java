@@ -12,13 +12,16 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class CalculatorTests {
 
     @Test
     public void calculatorAddTest() throws MalformedURLException, InterruptedException {
-        //DesiredCapabilities
+        // DesiredCapabilities
         DesiredCapabilities caps = new DesiredCapabilities();
-       // caps.setCapability("deviceName", "Pixel 3");
+        // caps.setCapability("deviceName", "Pixel 3");
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
@@ -33,14 +36,14 @@ public class CalculatorTests {
        // System.out.println(driver.getTitle());
         System.out.println(driver.getDeviceTime());
 
-        Assertions.assertEquals("android", driver.getPlatformName());
+        assertEquals("android", driver.getPlatformName());
 
         Thread.sleep(4000);
-        //locate AC element on calculator using AccessibilityId("clear")
+        //locate an AC element on calculator using AccessibilityId("clear")
         MobileElement clearElem = driver.findElement(MobileBy.AccessibilityId("clear"));
 
         System.out.println("Text of elem: " + clearElem.getText());
-        Assertions.assertTrue(clearElem.isDisplayed());
+        assertTrue(clearElem.isDisplayed());
 
         //close the app
         driver.closeApp();

@@ -119,12 +119,12 @@ http://localhost:4723/wd/hub => Appium server is running in our local computer a
 
 AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(url, caps);
 
-AppiumDriver driver  is similar to WebDriver driver
+AppiumDriver driver is similar to WebDriver driver
 AppiumDriver is an interface and has several implementations:
 
-AndroidDriver -> is a class to controll android application in mobile device
+AndroidDriver -> is a class to control android application in mobile device
 
-IOSDriver -> is a class to control ios application in mobile device
+IOSDriver -> is a class to control ios application in a mobile device
 
 (url, caps) -> we are specifying the location/url of appium server and capabilities that describe what we need from appium server.
 
