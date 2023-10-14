@@ -1,5 +1,6 @@
-package com.cydeo.utils;
+package com.cydeo.utilities;
 
+import com.cydeo.utilities.ConfigurationReader;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;

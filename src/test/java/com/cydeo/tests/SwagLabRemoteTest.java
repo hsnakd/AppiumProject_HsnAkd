@@ -1,6 +1,6 @@
 package com.cydeo.tests;
 
-import com.cydeo.utils.Driver;
+import com.cydeo.utilities.Driver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;

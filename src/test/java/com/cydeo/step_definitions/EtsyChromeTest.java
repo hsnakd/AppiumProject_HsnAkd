@@ -1,4 +1,4 @@
-package com.cydeo.tests;
+package com.cydeo.step_definitions;
 
 import com.cydeo.utilities.ConfigurationReader;
 import org.junit.jupiter.api.Test;

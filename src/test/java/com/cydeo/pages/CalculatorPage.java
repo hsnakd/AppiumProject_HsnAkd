@@ -1,6 +1,6 @@
 package com.cydeo.pages;
 
-import com.cydeo.utils.Driver;
+import com.cydeo.utilities.Driver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;

@@ -1,4 +1,4 @@
-package com.cydeo.tests;
+package com.cydeo.step_definitions;
 
 import com.cydeo.utilities.Driver;
 import io.appium.java_client.AppiumDriver;
