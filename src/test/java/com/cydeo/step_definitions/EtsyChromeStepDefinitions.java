@@ -1,5 +1,6 @@
 package com.cydeo.step_definitions;
 
+import com.cydeo.pages.EtsyChromePage;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,26 +8,48 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EtsyChromeStepDefinitions extends WebTestBase  {
+public class EtsyChromeStepDefinitions  {
+
+    EtsyChromePage etsyChromePage = new EtsyChromePage();
+
 
     @Given("I navigate to the Etsy homepage")
     public void iNavigateToTheEtsyHomepage() {
-        System.out.println(Driver.getDriver().getDeviceTime());
-        Driver.getDriver().get("https://www.etsy.com");
-    }
+//        System.out.println("Driver instance: " + Driver.getDriver());
+        Driver.getDriver().get("https://www.etsy.com");    }
 
     @When("I search for {string}")
-    public void iSearchFor(String searchTerm) {
-        WebElement searchField = Driver.getDriver().findElement(By.name("search_query"));
+    public void iSearchFor(String searchTerm) throws InterruptedException {
+        Thread.sleep(3000);
+        WebElement searchField = Driver.getDriver().findElement(By.xpath("//*[@name='search_query']"));
         searchField.sendKeys(searchTerm + Keys.ENTER);
+
+//        etsyChromePage.searchField.sendKeys(searchTerm + Keys.ENTER);
     }
 
     @Then("I should see search results")
-    public void iShouldSeeSearchResults() {
+    public void iShouldSeeSearchResults() throws InterruptedException {
+        Thread.sleep(3000);
+        //print number of results
         WebElement results = Driver.getDriver().findElement(By.xpath("//span[contains(text(),'results,')]"));
         System.out.println("results.getText() = " + results.getText());
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Given("I am on the Etsy login page")
     public void iAmOnTheEtsyLoginPage() {

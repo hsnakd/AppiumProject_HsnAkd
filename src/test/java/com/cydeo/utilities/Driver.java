@@ -1,11 +1,12 @@
 package com.cydeo.utilities;
 
 import com.cydeo.utilities.ConfigurationReader;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,6 +14,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private static AppiumDriver<MobileElement> driver;
@@ -21,17 +23,25 @@ public class Driver {
     private Driver() {
     }
 
-    public static AppiumDriver<MobileElement> getDriver() {
+    public static synchronized AppiumDriver<MobileElement> getDriver() {
+        if (driver == null) {
+            initializeDriver();
+        }
+        return driver;
+    }
+
+    private static void initializeDriver() {
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         String platform = ConfigurationReader.getProperty("platform");
-        if (Objects.isNull(driver)) {
             switch (platform) {
                 case "android":
-                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
-                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
+                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/calculator.apk");
+//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
                     try {
                         url = new URL("http://localhost:4723/wd/hub");
                     } catch (MalformedURLException e) {
@@ -39,30 +49,68 @@ public class Driver {
                     }
                     driver = new AndroidDriver<>(url, desiredCapabilities);
                     break;
+                case "androidApp":
+                    desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
+//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk" );
+                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/etsy.apk" );
+
+                    // for most of the applications, you need to tell Appium, app package (location, in mobile phone), app Activity for it
+                    desiredCapabilities.setCapability("appPackage","com.etsy.android");
+                    desiredCapabilities.setCapability("appActivity","com.etsy.android.ui.user.auth.SignInActivity");
+
+                    try {
+                        url = new URL("http://localhost:4723/wd/hub");
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    //launch appiumDriver
+                    driver = new AndroidDriver<MobileElement>(url, desiredCapabilities);
+                    break;
+
+                case "androidChrome":
+                    desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+                    desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
+                    desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+
+                    try {
+                        url = new URL("http://localhost:4723/wd/hub");
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Launch Chrome on Android
+                    driver = new AndroidDriver<>(url, desiredCapabilities);
+                    break;
+
+
                 case "android-remote":
-                    DesiredCapabilities caps = new DesiredCapabilities();
 
                     // Set your access credentials
-                    caps.setCapability("browserstack.user", "testuser_1PhU8f");
-                    caps.setCapability("browserstack.key", "qxU7LUK78o8BK1ki799f");
+                    desiredCapabilities.setCapability("browserstack.user", "testuser_1PhU8f");
+                    desiredCapabilities.setCapability("browserstack.key", "qxU7LUK78o8BK1ki799f");
 
                     // Set URL of the application under test
-                    caps.setCapability("app", "bs://e0ce6dfd61f8f7d9fd9c4fb11c746b65fd1d79f1");
+                    desiredCapabilities.setCapability("app", "bs://e0ce6dfd61f8f7d9fd9c4fb11c746b65fd1d79f1");
 
                     // Specify device and os_version for testing
-                    caps.setCapability("device", "OnePlus 8");
-                    caps.setCapability("os_version", "10.0");
-                    caps.setCapability("realMobile", "true");
+                    desiredCapabilities.setCapability("device", "OnePlus 8");
+                    desiredCapabilities.setCapability("os_version", "10.0");
+                    desiredCapabilities.setCapability("realMobile", "true");
 
                     // Set other BrowserStack capabilities
-                    caps.setCapability("project", "My test appium automation");
-                    caps.setCapability("build", "Java Android");
-                    caps.setCapability("name", "Regression");
+                    desiredCapabilities.setCapability("project", "My test appium automation");
+                    desiredCapabilities.setCapability("build", "Java Android");
+                    desiredCapabilities.setCapability("name", "Regression");
 
                     // Initialise the remote Webdriver using BrowserStack remote URL
                     // and desired capabilities defined above
                     try {
-                        driver = new AndroidDriver<>(new URL("http://hub.browserstack.com/wd/hub"), caps);
+                        driver = new AndroidDriver<>(new URL("http://hub.browserstack.com/wd/hub"), desiredCapabilities);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -135,13 +183,13 @@ public class Driver {
                     driver = new AndroidDriver<>(url, capsAndroidSYS);
                     break;
             }
-        }
-        return driver;
+
+
     }
 
     public static void closeDriver() {
-        if (Objects.nonNull(driver)) {
-            driver.closeApp();
+        if (driver != null) {
+            driver.quit();
             driver = null;
         }
     }

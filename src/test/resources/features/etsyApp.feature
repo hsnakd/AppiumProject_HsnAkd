@@ -7,5 +7,3 @@ Feature: Etsy App Login
     And clicks on the continue button
     Then the user should be logged in successfully
 
-
-# Driver Class ==>

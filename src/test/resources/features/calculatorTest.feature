@@ -1,3 +1,4 @@
+@Calculator
 Feature: Calculator Operations
   As a user
   I want to perform basic calculations
@@ -36,7 +37,7 @@ Feature: Calculator Operations
     Then the result should be 2 on the screen
 
 
-  @Calculator
+  @Operator
   Scenario Outline: Calculator
     Given I have entered "<first number>" into the calculator
     And I press the "<operator>" button
