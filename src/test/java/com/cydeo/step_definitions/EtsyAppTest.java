@@ -16,21 +16,21 @@ public class EtsyAppTest {
     @Test
     public void Test() throws MalformedURLException, InterruptedException {
 
-        DesiredCapabilities caps = new DesiredCapabilities();
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         // key and value: setUp for appium
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME,"Pixel 3");
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
-        caps.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk" );
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Pixel 3");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk" );
 
         // for most of the applications, you need to tell Appium, app package (location, in mobile phone), app Activity for it
-        caps.setCapability("appPackage","com.etsy.android");
-        caps.setCapability("appActivity","com.etsy.android.ui.user.auth.SignInActivity");
+        desiredCapabilities.setCapability("appPackage","com.etsy.android");
+        desiredCapabilities.setCapability("appActivity","com.etsy.android.ui.user.auth.SignInActivity");
         //set URL for the appium server
         URL url = new URL("http://localhost:4723/wd/hub");
 
         //launch appiumDriver
-        driver = new AndroidDriver<MobileElement>(url, caps);
+        driver = new AndroidDriver<MobileElement>(url, desiredCapabilities);
 
         System.out.println(driver.getDeviceTime());
 

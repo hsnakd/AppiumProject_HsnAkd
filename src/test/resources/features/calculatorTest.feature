@@ -45,6 +45,9 @@ Feature: Calculator Operations
     Then the result should be "<result>" on the screen
     Examples:
       | first number | operator | second number | result |
+      | 8            | +        | 2             | 10     |
+      | 8            | -        | 2             | 6      |
+      | 8            | *        | 2             | 16     |
       | 8            | /        | 2             | 4      |
 
 
