@@ -9,12 +9,10 @@ import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private static AppiumDriver<MobileElement> driver;
@@ -33,19 +31,13 @@ public class Driver {
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
                     desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel 3");
-//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
-//                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk" );
-                    desiredCapabilities.setCapability("appPackage","com.etsy.android");
-                    desiredCapabilities.setCapability("appActivity","com.etsy.android.ui.user.auth.SignInActivity");
+                    desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
                     try {
                         url = new URL("http://localhost:4723/wd/hub");
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
-                    driver = new AppiumDriver<>(url, desiredCapabilities);
-//                    driver = new AndroidDriver<>(url, desiredCapabilities);
-                    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+                    driver = new AndroidDriver<>(url, desiredCapabilities);
                     break;
                 case "android-remote":
                     DesiredCapabilities caps = new DesiredCapabilities();
