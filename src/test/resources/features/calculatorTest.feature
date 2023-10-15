@@ -52,3 +52,10 @@ Feature: Calculator Operations
       | 8            | /        | 2             | 4      |
 
 
+#EtsyApp
+#  configuration.properties ==>   platform=androidCalculator
+
+#  Driver class
+#  ==>   desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/calculator.apk");
+#  or
+#  ==>   desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/calculator.apk");

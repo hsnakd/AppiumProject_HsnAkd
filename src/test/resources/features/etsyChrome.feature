@@ -15,4 +15,11 @@ Feature: Etsy Chrome Test
     Then verify welcome message displayed
 
 
-  #/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/chromedriver
+#EtsyChrome
+#  configuration.properties ==>   platform=androidChrome
+
+
+#  Driver class
+#  ==>   desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "Chrome");
+#  ==>   driver = new RemoteWebDriver(url, desiredCapabilities);  ????????????????????
+#  ==>   driver = new AndroidDriver<>(url, desiredCapabilities);  ????????????????????

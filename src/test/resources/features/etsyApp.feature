@@ -7,3 +7,9 @@ Feature: Etsy App Login
     And clicks on the continue button
     Then the user should be logged in successfully
 
+#EtsyApp
+#  configuration.properties ==>   platform=androidEtsyApp
+#  Driver class
+#  ==>   desiredCapabilities.setCapability(MobileCapabilityType.APP, "https://cybertek-appium.s3.amazonaws.com/etsy.apk" );
+#  or
+#  ==>   desiredCapabilities.setCapability(MobileCapabilityType.APP, "/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/etsy.apk" );

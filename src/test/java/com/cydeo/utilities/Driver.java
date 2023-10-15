@@ -34,7 +34,7 @@ public class Driver {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         String platform = ConfigurationReader.getProperty("platform");
             switch (platform) {
-                case "android":
+                case "androidCalculator":
 //                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
@@ -49,7 +49,7 @@ public class Driver {
                     }
                     driver = new AndroidDriver<>(url, desiredCapabilities);
                     break;
-                case "androidApp":
+                case "androidEtsyApp":
                     desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
                     desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.0");
