@@ -9,9 +9,10 @@ Feature: Etsy Chrome Test
   @EtsyChromeTest-2
   Scenario: Login to Etsy
     Given I am on the Etsy login page
-    When I enter my email "your_email@example.com"
-    And I enter my password "your_password"
+    When I enter my email "your_emaxaxil@exsza.com"
+    And I enter my password "youxaxr_pasxswdxadord123*1sa"
     Then I should be logged in
+    Then verify welcome message displayed
 
 
   #/Users/HSN/IdeaProjects/AppiumProject_HsnAkd/chromedriver

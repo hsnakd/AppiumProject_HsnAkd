@@ -11,31 +11,19 @@ public class EtsyChromePage {
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver()), this);
     }
 
-    @AndroidFindBy(xpath = "//*[@id='global-enhancements-search-query']")
-    public MobileElement searchBox;
+    @AndroidFindBy(xpath = "//*[@id='join_neu_email_field']")
+    public MobileElement emailField;
 
-    @AndroidFindBy(accessibility = "search_query")
-    public MobileElement searchField;
-
-    @AndroidFindBy(id = "com.etsy.android:id/clg_text_input")
-    public MobileElement inputBox;
+    @AndroidFindBy(xpath = "//*[@id='join_neu_password_field']")
+    public MobileElement passwordField;
 
     @AndroidFindBy(id = "com.etsy.android:id/sign_in_button_email")
     public MobileElement signInButton;
-
-    @AndroidFindBy(id = "welcomeMessage")
-    public MobileElement welcomeMessage;
-
-    @AndroidFindBy(id = "aria-join_neu_email_field-error")
-    public MobileElement errorMessage;
 
     @AndroidFindBy(accessibility = "multiply")
     public MobileElement multiply;
 
 
-    public void multiply() {
-        multiply.click();
-    }
 
 
 }

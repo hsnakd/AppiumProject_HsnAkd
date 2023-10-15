@@ -5,11 +5,14 @@ import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.assertEquals;
 
 public class EtsyChromeStepDefinitions  {
 
@@ -60,19 +63,46 @@ public class EtsyChromeStepDefinitions  {
 
     @When("I enter my email {string}")
     public void iEnterMyEmail(String email) {
-        WebElement userNameField = Driver.getDriver().findElement(By.name("email"));
-        userNameField.sendKeys(email + Keys.ENTER);
+//        etsyChromePage.emailField.sendKeys(email + Keys.ENTER);
+        WebElement emailField = Driver.getDriver().findElement(By.xpath("//*[@id='join_neu_email_field']"));
+        emailField.sendKeys(email + Keys.ENTER);
+//        WebElement searchField = Driver.getDriver().findElement(By.name("email"));
+//        searchField.sendKeys(email + Keys.ENTER);
+//        WebElement continueButton = Driver.getDriver().findElement(By.xpath("//*[@id=\"join-neu-form\"]/div[1]/div/div[5]/div/button"));
+//        continueButton.click();
     }
 
     @When("I enter my password {string}")
     public void iEnterMyPassword(String password) throws InterruptedException {
         Thread.sleep(3000);
-        WebElement passwordField = Driver.getDriver().findElement(By.name("password"));
+//*[@id="join_neu_first_name_field"]
+        WebElement firstNameField = Driver.getDriver().findElement(By.xpath("//*[@id='join_neu_first_name_field']"));
+        firstNameField.sendKeys("HsnAkd" + Keys.ENTER);
+
+
+        WebElement passwordField = Driver.getDriver().findElement(By.xpath("//*[@id='join_neu_password_field']"));
         passwordField.sendKeys(password + Keys.ENTER);
     }
 
     @Then("I should be logged in")
-    public void iShouldBeLoggedIn() {
+    public void iShouldBeLoggedIn() throws InterruptedException {
         // Add assertion or validation for successful login
+        Thread.sleep(3000);
+        WebElement welcomeMessage = Driver.getDriver().findElement(By.xpath("//*[@id='content']/div/div[1]/div/div/h1[2]"));
+        String actualResult = welcomeMessage.getText();
+//        String expectedResult = "Welcome to Etsy, " + firstName;
+        String expectedResult = "Welcome to Etsy, HsnAkd!";
+
+        assertEquals(expectedResult,actualResult);
+
+
+
+
+
+    }
+
+    @Then("verify welcome message displayed")
+    public void verifyWelcomeMessageDisplayed() {
+
     }
 }
